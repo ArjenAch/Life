@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Life.Data;
+using Life.Theme;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +31,10 @@ namespace Life
             services.AddDbContextPool<LifeDbContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("LifeDb")));
 
+            services.Configure<RazorViewEngineOptions>(
+                options => options.ViewLocationExpanders.Add(new ThemeExpander())
+                );
+            services.Configure<IConfiguration>(Configuration);
 
             services.Configure<CookiePolicyOptions>(options =>
             {
