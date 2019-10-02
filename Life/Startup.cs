@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Life.Application.Mapping;
+using Life.Application.Services.Exercise;
+using Life.Application.Services.Interfaces.Exercise;
 using Life.Data;
+using Life.Data.Repositories;
+using Life.Data.Repositories.Interfaces;
 using Life.Theme;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,12 +34,24 @@ namespace Life
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IExerciseService, ExerciseService>();
+
             services.AddDbContextPool<LifeDbContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("LifeDb")));
 
             services.Configure<RazorViewEngineOptions>(
                 options => options.ViewLocationExpanders.Add(new ThemeExpander())
                 );
+
+            // Auto Mapper Configurations
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
             services.Configure<IConfiguration>(Configuration);
 
             services.Configure<CookiePolicyOptions>(options =>

@@ -12,7 +12,6 @@ namespace Life.Data
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<ExerciseInfo> ExercisesInfo { get; set; }
 
-
         public LifeDbContext(DbContextOptions<LifeDbContext> options) : base(options)
         {
         }

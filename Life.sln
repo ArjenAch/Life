@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Life", "Life\Life.csproj", "{5040D358-7FDE-42A2-9E9B-4D23BE5EDDB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Life", "Life\Life.csproj", "{5040D358-7FDE-42A2-9E9B-4D23BE5EDDB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Life.Data", "Life.Data\Life.Data.csproj", "{A4A36DFB-276B-45BA-A5BB-750362CE8CDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Life.Data", "Life.Data\Life.Data.csproj", "{A4A36DFB-276B-45BA-A5BB-750362CE8CDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Life.Core", "Life.Core\Life.Core.csproj", "{2CD64A23-ABB1-4BDC-B209-3DAB7F2B818F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Life.Core", "Life.Core\Life.Core.csproj", "{2CD64A23-ABB1-4BDC-B209-3DAB7F2B818F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Life.Application", "Life.Application\Life.Application.csproj", "{DBDC1D48-4012-4055-BBA4-5236F03CB79C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{2CD64A23-ABB1-4BDC-B209-3DAB7F2B818F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CD64A23-ABB1-4BDC-B209-3DAB7F2B818F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CD64A23-ABB1-4BDC-B209-3DAB7F2B818F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBDC1D48-4012-4055-BBA4-5236F03CB79C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBDC1D48-4012-4055-BBA4-5236F03CB79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBDC1D48-4012-4055-BBA4-5236F03CB79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBDC1D48-4012-4055-BBA4-5236F03CB79C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

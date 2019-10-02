@@ -9,18 +9,20 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <ProjectReference Include="..\Life.Application\Life.Application.csproj" />
     <ProjectReference Include="..\Life.Data\Life.Data.csproj" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
     <Folder Include="TagHelpers\" />
     <Folder Include="ViewComponents\" />
+    <Folder Include="ViewModels\ExercisesInfo\" />
   </ItemGroup>
 
 </Project>
