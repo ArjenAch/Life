@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Life.Application.Mapping;
 using Life.Application.Services.Exercise;
 using Life.Application.Services.Interfaces.Exercise;
 using Life.Data;
-using Life.Data.Repositories;
-using Life.Data.Repositories.Interfaces;
 using Life.Theme;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Life
 {
@@ -36,8 +30,17 @@ namespace Life
         {
             services.AddScoped<IExerciseService, ExerciseService>();
 
-            services.AddDbContextPool<LifeDbContext>(options =>
-             options.UseSqlServer(Configuration.GetConnectionString("LifeDb")));
+            // Use SQL Database if in Azure, otherwise, use SQLite
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+            {
+                services.AddDbContext<LifeDbContext>(options =>
+                        options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
+            }
+            else
+            {
+                services.AddDbContextPool<LifeDbContext>(options =>
+                        options.UseSqlServer(Configuration.GetConnectionString("LocalSqlServerLifeDb")));
+            }
 
             services.Configure<RazorViewEngineOptions>(
                 options => options.ViewLocationExpanders.Add(new ThemeExpander())

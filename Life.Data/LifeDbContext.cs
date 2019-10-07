@@ -15,6 +15,15 @@ namespace Life.Data
         public LifeDbContext(DbContextOptions<LifeDbContext> options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<WeightSet>();
+            builder.Entity<DurationSet>();
+
+            base.OnModelCreating(builder);
+
+        }
     }
 }
 

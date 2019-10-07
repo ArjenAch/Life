@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Life.Core.Domain.Exercise;
-using Life.Data;
-using Life.Data.Repositories;
-using Life.Data.Repositories.Interfaces;
 using Life.Application.Services.Interfaces.Exercise;
 using Life.Application.Services.Exercise.DTO;
 
@@ -43,7 +35,7 @@ namespace Life.Controllers
             {
                 return NotFound();
             }
-
+            
             return View(exerciseInfo);
         }
 
