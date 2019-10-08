@@ -30,7 +30,7 @@ namespace Life
         {
             services.AddScoped<IExerciseService, ExerciseService>();
 
-            // Use SQL Database if in Azure, otherwise, use SQLite
+            // Use SQL Database if in Azure, otherwise, use local SQl server running with Docker
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
             {
                 services.AddDbContext<LifeDbContext>(options =>
@@ -39,7 +39,7 @@ namespace Life
             else
             {
                 services.AddDbContextPool<LifeDbContext>(options =>
-                        options.UseSqlServer(Configuration.GetConnectionString("LocalSqlServerLifeDb")));
+                        options.UseSqlServer(Configuration["ConnectionStrings:LocalSqlServerLifeDb"]));
             }
 
             services.Configure<RazorViewEngineOptions>(
