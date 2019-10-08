@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Life.Data", "Life.Data\Life
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Life.Core", "Life.Core\Life.Core.csproj", "{2CD64A23-ABB1-4BDC-B209-3DAB7F2B818F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Life.Application", "Life.Application\Life.Application.csproj", "{DBDC1D48-4012-4055-BBA4-5236F03CB79C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Life.Application", "Life.Application\Life.Application.csproj", "{DBDC1D48-4012-4055-BBA4-5236F03CB79C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Life.Tests", "Life.Tests\Life.Tests.csproj", "{F8C390F0-1B45-4E9D-B111-DF65D70A77E1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DBDC1D48-4012-4055-BBA4-5236F03CB79C} = {DBDC1D48-4012-4055-BBA4-5236F03CB79C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +38,10 @@ Global
 		{DBDC1D48-4012-4055-BBA4-5236F03CB79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBDC1D48-4012-4055-BBA4-5236F03CB79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBDC1D48-4012-4055-BBA4-5236F03CB79C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8C390F0-1B45-4E9D-B111-DF65D70A77E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8C390F0-1B45-4E9D-B111-DF65D70A77E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8C390F0-1B45-4E9D-B111-DF65D70A77E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8C390F0-1B45-4E9D-B111-DF65D70A77E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

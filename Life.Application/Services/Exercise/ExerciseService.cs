@@ -21,13 +21,10 @@ namespace Life.Application.Services.Exercise
             this._context = context;
             this._mapper = mapper;
         }
-        public async Task<ExerciseInfoDTO> AddAsync(ExerciseInfoDTO exerciseInfo)
+        public async Task AddAsync(ExerciseInfoDTO exerciseInfo)
         {
             var potentialEntity = _mapper.Map<ExerciseInfo>(exerciseInfo);
             await _context.Set<ExerciseInfo>().AddAsync(potentialEntity);
-            var infoDTO = _mapper.Map<ExerciseInfoDTO>(potentialEntity);
-
-            return infoDTO;
         }
 
         public Task<bool> Exists(int id)
@@ -44,12 +41,12 @@ namespace Life.Application.Services.Exercise
         }
         
         //Filter for valid id?
-        public async Task<ExerciseInfoDTO> GetByIdAsync(int? id)
+        public async Task<ExerciseInfoDTO> GetByIdAsync(int id)
         {
-            var entity =  await _context.Set<ExerciseInfo>().FindAsync(id);
-            var infoDTO = _mapper.Map<ExerciseInfoDTO>(entity);
+                var entity = await _context.Set<ExerciseInfo>().FindAsync(id);
+                var infoDTO = _mapper.Map<ExerciseInfoDTO>(entity);
 
-            return infoDTO;
+                return infoDTO;
         }
 
         public async Task RemoveAsync(int id)

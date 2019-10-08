@@ -24,18 +24,18 @@ namespace Life.Controllers
         // GET: ExercisesInfo/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null) 
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var exerciseInfo = await _exerciseService.GetByIdAsync(id);
+            var exerciseInfo = await _exerciseService.GetByIdAsync((int)id);
 
             if (exerciseInfo == null)
             {
                 return NotFound();
             }
-            
+
             return View(exerciseInfo);
         }
 
@@ -70,7 +70,7 @@ namespace Life.Controllers
                 return NotFound();
             }
 
-            var exerciseInfo = await _exerciseService.GetByIdAsync(id);
+            var exerciseInfo = await _exerciseService.GetByIdAsync((int)id);
 
             if (exerciseInfo == null)
             {
@@ -122,7 +122,7 @@ namespace Life.Controllers
                 return NotFound();
             }
 
-            var exerciseInfo = await _exerciseService.GetByIdAsync(id);
+            var exerciseInfo = await _exerciseService.GetByIdAsync((int)id);
 
             if (exerciseInfo == null)
             {
