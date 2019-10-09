@@ -27,9 +27,14 @@ namespace Life.Application.Services.Exercise
             await _context.Set<ExerciseInfo>().AddAsync(potentialEntity);
         }
 
-        public Task<bool> Exists(int id)
+        public async Task<bool> Exists(int id)
         {
-            throw new NotImplementedException();
+            if(await _context.Set<ExerciseInfo>().FindAsync(id) != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public async Task<IEnumerable<ExerciseInfoDTO>> GetAllAsync()

@@ -18,6 +18,8 @@ namespace Life.Tests.Controllers
 {
     public class ExerciseInfoControllerTests
     {
+        #region Index
+
         [Fact]
         public async Task Index_ReturnAViewResult_WithAListOfExersiceInfoDTOobjects()
         {
@@ -37,6 +39,9 @@ namespace Life.Tests.Controllers
                 viewResult.ViewData.Model);
             Assert.Equal(3, model.Count());
         }
+
+        #endregion
+        #region Details
 
         [Fact]
         public async Task Details_ReturnAViewResult_WithAExerciseInfoDTobject_WhenValidIDisGiven()
@@ -74,7 +79,7 @@ namespace Life.Tests.Controllers
             var result = await controller.Details(id);
 
             // Assert
-            var viewResult = Assert.IsType<NotFoundResult>(result);
+            Assert.IsType<NotFoundResult>(result);
         }
 
         [Fact]
@@ -88,8 +93,10 @@ namespace Life.Tests.Controllers
             var result = await controller.Details(null);
 
             // Assert
-            var viewResult = Assert.IsType<NotFoundResult>(result);
+            Assert.IsType<NotFoundResult>(result);
         }
+        #endregion
+        #region Create
 
         [Fact]
         public void Create_ReturnAViewResult()
@@ -102,7 +109,7 @@ namespace Life.Tests.Controllers
             var result = controller.Create();
 
             // Assert
-            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.IsType<ViewResult>(result);
         }
 
         [Fact]
@@ -125,7 +132,7 @@ namespace Life.Tests.Controllers
 
             // Assert
             var viewResult = Assert.IsType<ViewResult>(result);
-            var model = Assert.IsAssignableFrom<ExerciseInfoDTO>(
+            Assert.IsAssignableFrom<ExerciseInfoDTO>(
                 viewResult.ViewData.Model);
         }
 
@@ -133,7 +140,6 @@ namespace Life.Tests.Controllers
         public async Task CreatePost_ReturnRedirectToAction_WhenModelStateIsValid()
         {
             // Arrange
-
             var exerciseService = new ExerciseServiceMocks();
             var mockService = new Mock<IExerciseService>();
             mockService.Setup(service => service.AddAsync(It.IsAny<ExerciseInfoDTO>()))
@@ -155,6 +161,8 @@ namespace Life.Tests.Controllers
             Assert.Equal("Index", redirectToActionResult.ActionName);
             mockService.Verify();
         }
+        #endregion
+        #region Edit
 
         [Fact]
         public async Task Edit_ReturnAViewResult_WithAExerciseInfoDTobject_WhenValidIDisGiven()
@@ -192,7 +200,7 @@ namespace Life.Tests.Controllers
             var result = await controller.Details(id);
 
             // Assert
-            var viewResult = Assert.IsType<NotFoundResult>(result);
+            Assert.IsType<NotFoundResult>(result);
         }
 
         [Fact]
@@ -206,7 +214,7 @@ namespace Life.Tests.Controllers
             var result = await controller.Edit(null);
 
             // Assert
-            var viewResult = Assert.IsType<NotFoundResult>(result);
+            Assert.IsType<NotFoundResult>(result);
         }
 
         [Fact]
@@ -229,14 +237,13 @@ namespace Life.Tests.Controllers
             var result = await controller.Edit(routId, exerciseInfo);
 
             // Assert
-            var viewResult = Assert.IsType<NotFoundResult>(result);
+            Assert.IsType<NotFoundResult>(result);
         }
 
         [Fact]
         public async Task EditPost_ReturnAViewResult_WhenModelStateIsInvalid()
         {
             // Arrange
-            var exerciseService = new ExerciseServiceMocks();
             var mockService = new Mock<IExerciseService>();
 
             var controller = new ExercisesInfoController(mockService.Object);
@@ -254,7 +261,7 @@ namespace Life.Tests.Controllers
 
             // Assert
             var viewResult = Assert.IsType<ViewResult>(result);
-            var model = Assert.IsAssignableFrom<ExerciseInfoDTO>(
+            Assert.IsAssignableFrom<ExerciseInfoDTO>(
                 viewResult.ViewData.Model);
         }
 
@@ -283,6 +290,82 @@ namespace Life.Tests.Controllers
             Assert.Equal("Index", redirectToActionResult.ActionName);
             mockService.Verify();
         }
+        #endregion
+        #region Delete
 
+        [Fact]
+        public async Task Delete_ReturnAViewResult_WithAExerciseInfoDTobject_WhenValidIDisGiven()
+        {
+            // Arrange
+            var id = 1;
+            var exerciseService = new ExerciseServiceMocks();
+            var mockService = new Mock<IExerciseService>();
+            mockService.Setup(service => service.GetByIdAsync(id))
+                .ReturnsAsync(exerciseService.GetByIdAsync(id));
+            var controller = new ExercisesInfoController(mockService.Object);
+
+            // Act
+            var result = await controller.Delete(id);
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var model = Assert.IsAssignableFrom<ExerciseInfoDTO>(
+                viewResult.ViewData.Model);
+            Assert.Equal(id, model.Id);
+        }
+
+        [Fact]
+        public async Task Delete_ReturnNotFound__WhenInValidIDisGiven()
+        {
+            // Arrange
+            var id = 100;
+            var exerciseService = new ExerciseServiceMocks();
+            var mockService = new Mock<IExerciseService>();
+            mockService.Setup(service => service.GetByIdAsync(id))
+                .ReturnsAsync(exerciseService.GetByIdAsync(id));
+            var controller = new ExercisesInfoController(mockService.Object);
+
+            // Act
+            var result = await controller.Details(id);
+
+            // Assert
+            var viewResult = Assert.IsType<NotFoundResult>(result);
+        }
+        [Fact]
+        public async Task Delete_ReturnNotFound_WhenIdIsNull()
+        {
+            // Arrange
+            var mockService = new Mock<IExerciseService>();
+            var controller = new ExercisesInfoController(mockService.Object);
+
+            // Act
+            var result = await controller.Delete(null);
+
+            // Assert
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task DeleteConfirmed_ReturnRedirectAction()
+        {
+            // Arrange
+            int id = 1;
+            var exerciseService = new ExerciseServiceMocks();
+            var mockService = new Mock<IExerciseService>();
+            mockService.Setup(service => service.RemoveAsync(id))
+                .Returns(Task.CompletedTask)
+                .Verifiable();
+            var controller = new ExercisesInfoController(mockService.Object);
+
+            // Act
+            var result = await controller.DeleteConfirmed(id);
+
+            // Assert
+            var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("Index", redirectToActionResult.ActionName);
+            mockService.Verify();
+        }
+
+        #endregion
     }
 }
