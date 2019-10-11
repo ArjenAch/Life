@@ -28,6 +28,7 @@ namespace Life
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IExerciseInfoService, ExerciseInfoService>();
             services.AddScoped<IExerciseService, ExerciseService>();
 
             // Use SQL Database if in Azure, otherwise, use local SQl server running with Docker
@@ -63,7 +64,6 @@ namespace Life
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

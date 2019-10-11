@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Life.Application.Services.Interfaces.Exercise
 {
-    public interface IExerciseService
+    public interface IExerciseInfoService
     {
-        Task<IEnumerable<ExerciseDTO>> GetAllAsync();
-        Task<ExerciseDTO> GetByIdAsync(int id);
-        Task AddAsync(ExerciseInfoDTO exerciseInfo, List<SetDTO> sets);
-        void Update(ExerciseDTO entity);
+        Task<IEnumerable<ExerciseInfoDTO>> GetAllAsync();
+        Task<ExerciseInfoDTO> GetByIdAsync(int id);
+        Task AddAsync(ExerciseInfoDTO exerciseInfo);
+        void Update(ExerciseInfoDTO exerciseInfo);
         Task<bool> Exists(int id);
         Task RemoveAsync(int id);
         Task SaveAsync();

@@ -11,69 +11,47 @@ using System.Threading.Tasks;
 
 namespace Life.Application.Services.Exercise
 {
-    public class ExerciseService : IExerciseService
+    public class ExerciseService : BaseService, IExerciseService
     {
-        private readonly LifeDbContext _context;
         private readonly IMapper _mapper;
 
-        public ExerciseService(LifeDbContext context, IMapper mapper)
+        public ExerciseService(LifeDbContext context, IMapper mapper) : base(context)
         {
-            this._context = context;
             this._mapper = mapper;
         }
-        public async Task AddAsync(ExerciseInfoDTO exerciseInfo)
+
+        public Task AddAsync(ExerciseInfoDTO exerciseInfo, List<SetDTO> sets)
         {
-            var potentialEntity = _mapper.Map<ExerciseInfo>(exerciseInfo);
-            await _context.Set<ExerciseInfo>().AddAsync(potentialEntity);
+            throw new NotImplementedException();
         }
 
-        public async Task<bool> Exists(int id)
+        public Task<bool> Exists(int id)
         {
-            if(await _context.Set<ExerciseInfo>().FindAsync(id) != null)
-            {
-                return true;
-            }
-
-            return false;
+            throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<ExerciseInfoDTO>> GetAllAsync()
+        public async Task<IEnumerable<ExerciseDTO>> GetAllAsync()
         {
-            var entities = await _context.Set<ExerciseInfo>().ToListAsync();
-            var infoDTOs = _mapper.Map<IEnumerable<ExerciseInfoDTO>>(entities);
+            var entities = await _context.Exercises.ToListAsync(); //.Include<ExerciseInfo>().
+            var infoDTOs = _mapper.Map<IEnumerable<ExerciseDTO>>(entities);
 
             return infoDTOs;
         }
-        
-        //Filter for valid id?
-        public async Task<ExerciseInfoDTO> GetByIdAsync(int id)
-        {
-                var entity = await _context.Set<ExerciseInfo>().FindAsync(id);
-                var infoDTO = _mapper.Map<ExerciseInfoDTO>(entity);
 
-                return infoDTO;
+        public Task<ExerciseDTO> GetByIdAsync(int id)
+        {
+            throw new NotImplementedException();
         }
 
-        public async Task RemoveAsync(int id)
+        public Task RemoveAsync(int id)
         {
-            var entity = await _context.Set<ExerciseInfo>().FindAsync(id);
-
-            if (entity != null)
-            {
-                _context.Set<ExerciseInfo>().Remove(entity);
-            }
+            throw new NotImplementedException();
         }
 
-        public async Task SaveAsync()
-        {
-            await _context.SaveChangesAsync();
-        }
 
-        public void Update(ExerciseInfoDTO exerciseInfoDTO)
+        public void Update(ExerciseDTO entity)
         {
-            var updatedentity = _mapper.Map<ExerciseInfo>(exerciseInfoDTO);
-            var entity = _context.Set<ExerciseInfo>().Attach(updatedentity);
-            entity.State = EntityState.Modified;
+            throw new NotImplementedException();
         }
     }
 }

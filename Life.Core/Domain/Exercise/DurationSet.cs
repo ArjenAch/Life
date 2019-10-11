@@ -6,11 +6,10 @@ namespace Life.Core.Domain.Exercise
 {
     public class DurationSet : Set
     {
-        public string Title;
-
+        public string Title { get; set; }
         /// <summary>
         /// Duration in seconds
         /// </summary>
-        public int Duration;
+        public int Duration { get; set; }
     }
 }

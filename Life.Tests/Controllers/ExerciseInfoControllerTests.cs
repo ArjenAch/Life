@@ -25,7 +25,7 @@ namespace Life.Tests.Controllers
         {
             // Arrange
             var exerciseService = new ExerciseServiceMocks();
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
             mockService.Setup(service => service.GetAllAsync())
                 .ReturnsAsync(exerciseService.GetExerciseInfoList());
             var controller = new ExercisesInfoController(mockService.Object);
@@ -49,7 +49,7 @@ namespace Life.Tests.Controllers
             // Arrange
             var id = 1;
             var exerciseService = new ExerciseServiceMocks();
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
             mockService.Setup(service => service.GetByIdAsync(id))
                 .ReturnsAsync(exerciseService.GetByIdAsync(id));
             var controller = new ExercisesInfoController(mockService.Object);
@@ -70,7 +70,7 @@ namespace Life.Tests.Controllers
             // Arrange
             var id = 100;
             var exerciseService = new ExerciseServiceMocks();
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
             mockService.Setup(service => service.GetByIdAsync(id))
                 .ReturnsAsync(exerciseService.GetByIdAsync(id));
             var controller = new ExercisesInfoController(mockService.Object);
@@ -86,7 +86,7 @@ namespace Life.Tests.Controllers
         public async Task Details_ReturnNotFound__WhenNullisGiven()
         {
             // Arrange
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
             var controller = new ExercisesInfoController(mockService.Object);
 
             // Act
@@ -102,7 +102,7 @@ namespace Life.Tests.Controllers
         public void Create_ReturnAViewResult()
         {
             // Arrange
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
             var controller = new ExercisesInfoController(mockService.Object);
 
             // Act
@@ -117,7 +117,7 @@ namespace Life.Tests.Controllers
         {
             // Arrange
             var exerciseService = new ExerciseServiceMocks();
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
 
             var controller = new ExercisesInfoController(mockService.Object);
             controller.ModelState.AddModelError("Invalid model", "Title contains ...");
@@ -141,7 +141,7 @@ namespace Life.Tests.Controllers
         {
             // Arrange
             var exerciseService = new ExerciseServiceMocks();
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
             mockService.Setup(service => service.AddAsync(It.IsAny<ExerciseInfoDTO>()))
                 .Returns(Task.CompletedTask)
                 .Verifiable();
@@ -170,7 +170,7 @@ namespace Life.Tests.Controllers
             // Arrange
             var id = 2;
             var exerciseService = new ExerciseServiceMocks();
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
             mockService.Setup(service => service.GetByIdAsync(id))
                 .ReturnsAsync(exerciseService.GetByIdAsync(id));
             var controller = new ExercisesInfoController(mockService.Object);
@@ -191,7 +191,7 @@ namespace Life.Tests.Controllers
             // Arrange
             var id = 100;
             var exerciseService = new ExerciseServiceMocks();
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
             mockService.Setup(service => service.GetByIdAsync(id))
                 .ReturnsAsync(exerciseService.GetByIdAsync(id));
             var controller = new ExercisesInfoController(mockService.Object);
@@ -207,7 +207,7 @@ namespace Life.Tests.Controllers
         public async Task Edit_ReturnNotFound__WhenNullisGiven()
         {
             // Arrange
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
             var controller = new ExercisesInfoController(mockService.Object);
 
             // Act
@@ -222,7 +222,7 @@ namespace Life.Tests.Controllers
         {
             // Arrange
             var exerciseService = new ExerciseServiceMocks();
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
             var controller = new ExercisesInfoController(mockService.Object);
             int routId = 1;
             var exerciseInfo = new ExerciseInfoDTO()
@@ -244,7 +244,7 @@ namespace Life.Tests.Controllers
         public async Task EditPost_ReturnAViewResult_WhenModelStateIsInvalid()
         {
             // Arrange
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
 
             var controller = new ExercisesInfoController(mockService.Object);
             controller.ModelState.AddModelError("Invalid model", "Title contains ...");
@@ -269,7 +269,7 @@ namespace Life.Tests.Controllers
         public async Task EditPost_ReturnARedirectToAction_WhenModelStateIsValid()
         {
             // Arrange
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
             mockService.Setup(service => service.Update(It.IsAny<ExerciseInfoDTO>()))
                 .Verifiable();
             var controller = new ExercisesInfoController(mockService.Object);
@@ -299,7 +299,7 @@ namespace Life.Tests.Controllers
             // Arrange
             var id = 1;
             var exerciseService = new ExerciseServiceMocks();
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
             mockService.Setup(service => service.GetByIdAsync(id))
                 .ReturnsAsync(exerciseService.GetByIdAsync(id));
             var controller = new ExercisesInfoController(mockService.Object);
@@ -320,7 +320,7 @@ namespace Life.Tests.Controllers
             // Arrange
             var id = 100;
             var exerciseService = new ExerciseServiceMocks();
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
             mockService.Setup(service => service.GetByIdAsync(id))
                 .ReturnsAsync(exerciseService.GetByIdAsync(id));
             var controller = new ExercisesInfoController(mockService.Object);
@@ -335,7 +335,7 @@ namespace Life.Tests.Controllers
         public async Task Delete_ReturnNotFound_WhenIdIsNull()
         {
             // Arrange
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
             var controller = new ExercisesInfoController(mockService.Object);
 
             // Act
@@ -351,7 +351,7 @@ namespace Life.Tests.Controllers
             // Arrange
             int id = 1;
             var exerciseService = new ExerciseServiceMocks();
-            var mockService = new Mock<IExerciseService>();
+            var mockService = new Mock<IExerciseInfoService>();
             mockService.Setup(service => service.RemoveAsync(id))
                 .Returns(Task.CompletedTask)
                 .Verifiable();

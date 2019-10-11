@@ -1,27 +1,36 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Life.Core.Domain.Exercise;
+using Life.Data;
 using Life.Application.Services.Interfaces.Exercise;
+using Life.Application.Services.Exercise;
 using Life.Application.Services.Exercise.DTO;
 
 namespace Life.Controllers
 {
-    public class ExercisesInfoController : Controller
+    public class ExercisesController : Controller
     {
-        private readonly IExerciseInfoService _exerciseService;
+        private readonly IExerciseService _exerciseService;
+        private readonly IExerciseInfoService _infoService;
 
-        public ExercisesInfoController(IExerciseInfoService exerciseService)
+        public ExercisesController(IExerciseService exerciseService, IExerciseInfoService infoService)
         {
-            this._exerciseService = exerciseService;
+            _exerciseService = exerciseService;
+            _infoService = infoService;
         }
 
-        // GET: ExercisesInfo
+        // GET: Exercises
         public async Task<IActionResult> Index()
         {
             return View(await _exerciseService.GetAllAsync());
         }
 
-        // GET: ExercisesInfo/Details/5
+        // GET: Exercises/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -29,40 +38,38 @@ namespace Life.Controllers
                 return NotFound();
             }
 
-            var exerciseInfo = await _exerciseService.GetByIdAsync((int)id);
-
-            if (exerciseInfo == null)
+            var exercise = await _exerciseService.GetByIdAsync((int)id);
+            if (exercise == null)
             {
                 return NotFound();
             }
 
-            return View(exerciseInfo);
+            return View(exercise);
         }
 
-        // GET: ExercisesInfo/Create
+        // GET: Exercises/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: ExercisesInfo/Create
+        // POST: Exercises/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ExerciseType,Description")] ExerciseInfoDTO exerciseInfo)
+        public async Task<IActionResult> Create([Bind("Id")] ExerciseInfoDTO exerciseInfo, List<SetDTO> sets)
         {
             if (ModelState.IsValid)
             {
-                await _exerciseService.AddAsync(exerciseInfo);
+                await _exerciseService.AddAsync(exerciseInfo, sets);
                 await _exerciseService.SaveAsync();
-
                 return RedirectToAction(nameof(Index));
             }
-            return View(exerciseInfo);
+            return View(exerciseInfo); //sets?
         }
 
-        // GET: ExercisesInfo/Edit/5
+        // GET: Exercises/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -70,23 +77,22 @@ namespace Life.Controllers
                 return NotFound();
             }
 
-            var exerciseInfo = await _exerciseService.GetByIdAsync((int)id);
-
-            if (exerciseInfo == null)
+            var exercise = await _exerciseService.GetByIdAsync((int)id);
+            if (exercise == null)
             {
                 return NotFound();
             }
-            return View(exerciseInfo);
+            return View(exercise);
         }
 
-        // POST: ExercisesInfo/Edit/5
+        // POST: Exercises/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ExerciseType,Description")] ExerciseInfoDTO exerciseInfo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id")] ExerciseDTO exercise)
         {
-            if (id != exerciseInfo.Id)
+            if (id != exercise.Id)
             {
                 return NotFound();
             }
@@ -95,12 +101,12 @@ namespace Life.Controllers
             {
                 try
                 {
-                    _exerciseService.Update(exerciseInfo);
+                    _exerciseService.Update(exercise);
                     await _exerciseService.SaveAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await _exerciseService.Exists(exerciseInfo.Id))
+                    if (! await _exerciseService.Exists(exercise.Id))
                     {
                         return NotFound();
                     }
@@ -111,10 +117,10 @@ namespace Life.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(exerciseInfo);
+            return View(exercise);
         }
 
-        // GET: ExercisesInfo/Delete/5
+        // GET: Exercises/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -122,17 +128,16 @@ namespace Life.Controllers
                 return NotFound();
             }
 
-            var exerciseInfo = await _exerciseService.GetByIdAsync((int)id);
-
-            if (exerciseInfo == null)
+            var exercise = await _exerciseService.GetByIdAsync((int)id);
+            if (exercise == null)
             {
                 return NotFound();
             }
 
-            return View(exerciseInfo);
+            return View(exercise);
         }
 
-        // POST: ExercisesInfo/Delete/5
+        // POST: Exercises/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -141,6 +146,16 @@ namespace Life.Controllers
             await _exerciseService.SaveAsync();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        /// <summary>
+        /// TODO use SignalR..
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<ExerciseInfoDTO>> GetInfoList()
+        {
+            var list = (await _infoService.GetAllAsync()).ToList();
+            return list;
         }
     }
 }

@@ -24,8 +24,7 @@
 
   <ItemGroup>
     <Folder Include="TagHelpers\" />
-    <Folder Include="ViewComponents\" />
-    <Folder Include="ViewModels\ExercisesInfo\" />
+    <Folder Include="ViewModels\Exercise\" />
   </ItemGroup>
 
 </Project>
