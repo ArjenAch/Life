@@ -23,7 +23,6 @@
 
 
   <ItemGroup>
-    <Folder Include="TagHelpers\" />
     <Folder Include="ViewModels\Exercise\" />
   </ItemGroup>
 

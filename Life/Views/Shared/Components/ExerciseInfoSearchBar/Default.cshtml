@@ -1,13 +1,39 @@
 ﻿@using Life.Application.Services.Exercise.DTO
-@model List<ExerciseInfoDTO>
+@using Life.Core.Domain.Exercise
+
+@model ExerciseInfoDTO
 
 @*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+    Layout = null;
 *@
 
-<div class="">
-    <input type="text" />
-    <p>
-        text jajajaja
-    </p>
+<div>
+    <form autocomplete="off">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Title" class="control-label">Exercise:</label>
+            <input id="info-title" asp-for="Title" class="form-control" />
+            <input id="tags" name="tags" asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div id="exercise-info" hidden>
+            <div class="form-group">
+                <label asp-for="ExerciseType" class="control-label"></label>
+                <select id="exercise-type" asp-for="ExerciseType" asp-items="Html.GetEnumSelectList<ExerciseType>()" class="form-control"></select>
+                <span asp-validation-for="ExerciseType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input id="description" asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
 </div>
+
+<environment include="Development">
+    <script src="~/lib/jquery/dist/jquery.js" on-content-loaded="true"></script>
+    <script src="~/js/exercise/viewcomponents/exerciseinfosearchbar.js" on-content-loaded="true"></script>
+</environment>
+

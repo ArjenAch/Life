@@ -1,4 +1,5 @@
-﻿using Life.Application.Services.Interfaces.Exercise;
+﻿using Life.Application.Services.Exercise.DTO;
+using Life.Application.Services.Interfaces.Exercise;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,16 +11,19 @@ namespace Life.ViewComponents
     public class ExerciseInfoSearchBarViewComponent : ViewComponent
     {
         private readonly IExerciseInfoService _exerciseInfoService;
+        private ExerciseInfoDTO _currentExerciseInfo;
 
         public ExerciseInfoSearchBarViewComponent(IExerciseInfoService exerciseInfoService)
         {
             _exerciseInfoService = exerciseInfoService;
+            _currentExerciseInfo = new ExerciseInfoDTO();
         }
-        public async Task<IViewComponentResult> InvokeAsync()
-        {
-            var exerciseInfoList = await _exerciseInfoService.GetAllAsync();
 
-            return View(exerciseInfoList.ToList());
+        public IViewComponentResult Invoke()
+        {
+            return View(_currentExerciseInfo);
         }
+
     }
 }
+
