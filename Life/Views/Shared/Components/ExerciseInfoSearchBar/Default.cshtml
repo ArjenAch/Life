@@ -2,7 +2,6 @@
 @using Life.Core.Domain.Exercise
 
 @model ExerciseInfoDTO
-
 @*
     Layout = null;
 *@
@@ -13,10 +12,9 @@
         <div class="form-group">
             <label asp-for="Title" class="control-label">Exercise:</label>
             <input id="info-title" asp-for="Title" class="form-control" />
-            <input id="tags" name="tags" asp-for="Title" class="form-control" />
             <span asp-validation-for="Title" class="text-danger"></span>
         </div>
-        <div id="exercise-info" hidden>
+        <div id="exercise-info">
             <div class="form-group">
                 <label asp-for="ExerciseType" class="control-label"></label>
                 <select id="exercise-type" asp-for="ExerciseType" asp-items="Html.GetEnumSelectList<ExerciseType>()" class="form-control"></select>
@@ -27,7 +25,6 @@
                 <input id="description" asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <input type="submit" value="Create" class="btn btn-primary" />
         </div>
     </form>
 </div>
