@@ -6,7 +6,7 @@ namespace Life.Core.Domain.Exercise
 {
     public class DurationSet : Set
     {
-        public string Title { get; set; }
+        public string Description { get; set; }
         /// <summary>
         /// Duration in seconds
         /// </summary>

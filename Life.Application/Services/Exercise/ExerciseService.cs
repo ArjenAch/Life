@@ -20,7 +20,7 @@ namespace Life.Application.Services.Exercise
             this._mapper = mapper;
         }
 
-        public Task AddAsync(ExerciseInfoDTO exerciseInfo, List<SetDTO> sets)
+        public Task AddAsync(ExerciseDTO exerciseDTO)
         {
             throw new NotImplementedException();
         }

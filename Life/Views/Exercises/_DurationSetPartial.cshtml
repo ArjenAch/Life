@@ -1,0 +1,20 @@
+﻿@model Life.Application.Services.Exercise.DTO.SetDTO
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<p>
+    DURATION SET
+</p>
+
+<div class="form-group">
+    <label asp-for="Description" class="control-label">Description:</label>
+    <input asp-for="Description" class="form-control" />
+    <span asp-validation-for="Description" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Duration" class="control-label">Duration in sec:</label>
+    <input asp-for="Duration" class="form-control" />
+    <span asp-validation-for="Duration" class="text-danger"></span>
+</div>
+<button class="remove-set">Remove this Set</button>

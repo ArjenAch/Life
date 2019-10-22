@@ -11,7 +11,7 @@ namespace Life.Application.Services.Interfaces.Exercise
     {
         Task<IEnumerable<ExerciseDTO>> GetAllAsync();
         Task<ExerciseDTO> GetByIdAsync(int id);
-        Task AddAsync(ExerciseInfoDTO exerciseInfo, List<SetDTO> sets);
+        Task AddAsync(ExerciseDTO exerciseDTO);
         void Update(ExerciseDTO entity);
         Task<bool> Exists(int id);
         Task RemoveAsync(int id);

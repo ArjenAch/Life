@@ -1,4 +1,4 @@
-﻿@model Life.Application.Services.Exercise.DTO.ExerciseInfoDTO
+﻿@model Life.Application.Services.Exercise.DTO.ExerciseDTO
 @{
     ViewData["Title"] = "Create";
 }
@@ -9,11 +9,10 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
-            <div>
-                @await Component.InvokeAsync("ExerciseInfoSearchBar")
-            </div>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="Create" autocomplete="off">
+            @await Component.InvokeAsync("ExerciseInfoSearchBar", new { exerciseInfo = Model.ExerciseInfo })
+            <div class="set-block" />
+            <button class="add-set">Add Set</button>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -29,4 +28,5 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <link href="~/lib/jqueryui/jquery-ui.css" rel="stylesheet" />
     <script src="~/lib/jqueryui/jquery-ui.js"></script>
+    <script src="~/js/exercise/setdynamicgenerator.js" on-content-loaded="true"></script>
 }

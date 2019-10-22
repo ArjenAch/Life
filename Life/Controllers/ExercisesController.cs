@@ -50,7 +50,7 @@ namespace Life.Controllers
         // GET: Exercises/Create
         public IActionResult Create()
         {
-            return View();
+            return View(new ExerciseDTO());
         }
 
         // POST: Exercises/Create
@@ -58,15 +58,15 @@ namespace Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] ExerciseInfoDTO exerciseInfo, List<SetDTO> sets)
+        public async Task<IActionResult> Create([Bind("ExerciseInfo", "Sets")] ExerciseDTO exerciseDTO)
         {
             if (ModelState.IsValid)
             {
-                await _exerciseService.AddAsync(exerciseInfo, sets);
+                await _exerciseService.AddAsync(exerciseDTO);
                 await _exerciseService.SaveAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(exerciseInfo); //sets?
+            return View(exerciseDTO); //sets?
         }
 
         // GET: Exercises/Edit/5
@@ -148,14 +148,15 @@ namespace Life.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        /// <summary>
-        /// TODO use SignalR..
-        /// </summary>
-        /// <returns></returns>
-        public async Task<List<ExerciseInfoDTO>> GetInfoList()
+        public IActionResult GetSetPartial(int typeId)
         {
-            var list = (await _infoService.GetAllAsync()).ToList();
-            return list;
+            if(typeId == (int)ExerciseType.Strength)
+            {
+                return PartialView("_WeightSetPartial");
+            }
+
+            return PartialView("_DurationSetPartial");
         }
+
     }
 }

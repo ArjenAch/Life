@@ -11,17 +11,14 @@ namespace Life.ViewComponents
     public class ExerciseInfoSearchBarViewComponent : ViewComponent
     {
         private readonly IExerciseInfoService _exerciseInfoService;
-        private ExerciseInfoDTO _currentExerciseInfo;
-
         public ExerciseInfoSearchBarViewComponent(IExerciseInfoService exerciseInfoService)
         {
             _exerciseInfoService = exerciseInfoService;
-            _currentExerciseInfo = new ExerciseInfoDTO();
         }
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(ExerciseInfoDTO exerciseInfo)
         {
-            return View(_currentExerciseInfo);
+            return View(exerciseInfo);
         }
 
     }
