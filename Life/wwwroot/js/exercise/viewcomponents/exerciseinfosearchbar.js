@@ -24,7 +24,7 @@
                         $(this).parent()
                             .next()
                             .find('input, textarea, select')
-                            .attr('disabled', true);
+                            .prop('readonly', true);
                     }
                 });
             },

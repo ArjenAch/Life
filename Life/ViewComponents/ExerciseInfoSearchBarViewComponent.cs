@@ -16,7 +16,7 @@ namespace Life.ViewComponents
             _exerciseInfoService = exerciseInfoService;
         }
 
-        public IViewComponentResult Invoke(ExerciseInfoDTO exerciseInfo)
+        public IViewComponentResult Invoke(ExerciseDTO exerciseInfo)
         {
             return View(exerciseInfo);
         }

@@ -1,4 +1,6 @@
 ﻿@model Life.Application.Services.Exercise.DTO.ExerciseDTO
+
+@using Life.Application.Services.Exercise.DTO;
 @{
     ViewData["Title"] = "Create";
 }
@@ -9,11 +11,14 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" autocomplete="off">
-            @await Component.InvokeAsync("ExerciseInfoSearchBar", new { exerciseInfo = Model.ExerciseInfo })
-            <div class="set-block" />
+        <form id="create-exercise" asp-action="Create" autocomplete="off">
+            @await Component.InvokeAsync("ExerciseInfoSearchBar", new { exerciseInfo = Model })
+            <div class="set-list">
+                @*@Html.EditorForMany(exercise => exercise.Sets, set => set.Index);*@
+            </div>
             <button class="add-set">Add Set</button>
             <div class="form-group">
+
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

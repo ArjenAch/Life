@@ -58,7 +58,7 @@ namespace Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ExerciseInfo", "Sets")] ExerciseDTO exerciseDTO)
+        public async Task<IActionResult> Create(ExerciseDTO exerciseDTO) 
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace Life.Controllers
                 await _exerciseService.SaveAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(exerciseDTO); //sets?
+            return View(exerciseDTO); 
         }
 
         // GET: Exercises/Edit/5

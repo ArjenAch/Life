@@ -1,30 +1,28 @@
 ﻿@using Life.Application.Services.Exercise.DTO
 @using Life.Core.Domain.Exercise
 
-@model ExerciseInfoDTO
+@model ExerciseDTO
 @*
     Layout = null;
 *@
 
-<div>
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Title" class="control-label">Exercise:</label>
-            <input id="info-title" asp-for="Title" class="form-control" />
-            <span asp-validation-for="Title" class="text-danger"></span>
-        </div>
-        <div id="exercise-info">
-            <div class="form-group">
-                <label asp-for="ExerciseType" class="control-label"></label>
-                <select id="exercise-type" asp-for="ExerciseType" asp-items="Html.GetEnumSelectList<ExerciseType>()" class="form-control"></select>
-                <span asp-validation-for="ExerciseType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input id="description" asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-        </div>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="form-group">
+    <label asp-for="@Model.Title" class="control-label">Exercise:</label>
+    <input id="info-title" asp-for="@Model.Title" class="form-control" />
+    <span asp-validation-for="@Model.Title" class="text-danger"></span>
+</div>
+<div id="exercise-info">
+    <div class="form-group">
+        <label asp-for="@Model.ExerciseType" class="control-label"></label>
+        <select id="exercise-type" asp-for="@Model.ExerciseType" asp-items="Html.GetEnumSelectList<ExerciseType>()" class="form-control"></select>
+        <span asp-validation-for="@Model.ExerciseType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Description" class="control-label"></label>
+        <input id="description" asp-for="@Model.Description" class="form-control" />
+        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+    </div>
 </div>
 
 <environment include="Development">

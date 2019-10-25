@@ -1,5 +1,4 @@
 ﻿@model Life.Application.Services.Exercise.DTO.SetDTO
-
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -7,6 +6,8 @@
 <p>
     WEIGHT SET
 </p>
+
+<input type="hidden" asp-for="Index" />
 
 <div class="form-group">
     <label asp-for="Weight" class="control-label">Weight in kg:</label>
