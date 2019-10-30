@@ -16,12 +16,10 @@ namespace Life.Controllers
     public class ExercisesController : Controller
     {
         private readonly IExerciseService _exerciseService;
-        private readonly IExerciseInfoService _infoService;
 
-        public ExercisesController(IExerciseService exerciseService, IExerciseInfoService infoService)
+        public ExercisesController(IExerciseService exerciseService)
         {
             _exerciseService = exerciseService;
-            _infoService = infoService;
         }
 
         // GET: Exercises

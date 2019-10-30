@@ -9,5 +9,6 @@ namespace Life.Core.Domain.Exercise
         public int Id { get; set; }
         public ExerciseInfo ExerciseInfo { get; set; }
         public List<Set> Sets { get; set; }
+
     }
 }

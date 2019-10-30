@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Life.Application.Services.Exercise.DTO;
 using Life.Application.Services.Interfaces.Exercise;
+using Life.Application.Services.Interfaces.Util;
 using Life.Core.Domain.Exercise;
 using Life.Data;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,7 @@ namespace Life.Application.Services.Exercise
     {
         private readonly IMapper _mapper;
 
-        public ExerciseInfoService(LifeDbContext context, IMapper mapper) : base(context)
+        public ExerciseInfoService(LifeDbContext context, IMapper mapper, IUserFriendlyExceptionMapper exceptionMapper) : base(context, exceptionMapper)
         {
             this._mapper = mapper;
         }
@@ -27,7 +28,7 @@ namespace Life.Application.Services.Exercise
 
         public async Task<bool> Exists(int id)
         {
-            if(await _context.Set<ExerciseInfo>().FindAsync(id) != null)
+            if (await _context.Set<ExerciseInfo>().FindAsync(id) != null)
             {
                 return true;
             }
@@ -42,13 +43,13 @@ namespace Life.Application.Services.Exercise
 
             return infoDTOs;
         }
-        
+
         public async Task<ExerciseInfoDTO> GetByIdAsync(int id)
         {
-                var entity = await _context.Set<ExerciseInfo>().FindAsync(id);
-                var infoDTO = _mapper.Map<ExerciseInfoDTO>(entity);
+            var entity = await _context.Set<ExerciseInfo>().FindAsync(id);
+            var infoDTO = _mapper.Map<ExerciseInfoDTO>(entity);
 
-                return infoDTO;
+            return infoDTO;
         }
 
         public async Task RemoveAsync(int id)

@@ -115,7 +115,7 @@ namespace Life.Controllers
         }
 
         // GET: ExercisesInfo/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, string message = "")
         {
             if (id == null)
             {
@@ -129,6 +129,11 @@ namespace Life.Controllers
                 return NotFound();
             }
 
+            if(!string.IsNullOrEmpty(message))
+            {
+                ViewData["ErrorMessage"] = message;
+            }
+
             return View(exerciseInfo);
         }
 
@@ -138,9 +143,13 @@ namespace Life.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _exerciseService.RemoveAsync(id);
-            await _exerciseService.SaveAsync();
+            var response = await _exerciseService.SaveAsync();
+            if (response.Succes)
+            {
+                return RedirectToAction(nameof(Index));
+            }
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Delete), new { id, message = response.ToString("ExerciseInfo")});
         }
     }
 }

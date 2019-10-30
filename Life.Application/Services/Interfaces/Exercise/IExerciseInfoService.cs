@@ -1,4 +1,5 @@
-﻿using Life.Application.Services.Exercise.DTO;
+﻿using Life.Application.Mapping.DTO;
+using Life.Application.Services.Exercise.DTO;
 using Life.Core.Domain.Exercise;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Life.Application.Services.Interfaces.Exercise
         void Update(ExerciseInfoDTO exerciseInfo);
         Task<bool> Exists(int id);
         Task RemoveAsync(int id);
-        Task SaveAsync();
+        Task<OperationResponse> SaveAsync();
 
 
     }

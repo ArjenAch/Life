@@ -7,10 +7,10 @@ using System.Text;
 
 namespace Life.Tests.ServiceMocks
 {
-    public class ExerciseServiceMocks
+    public class ExerciseInfoServiceMocks
     {
         private List<ExerciseInfoDTO> _exercises;
-        public ExerciseServiceMocks ()
+        public ExerciseInfoServiceMocks ()
         {
             _exercises = new List<ExerciseInfoDTO>()
             {

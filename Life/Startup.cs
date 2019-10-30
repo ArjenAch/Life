@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
 using Life.Application.Mapping;
 using Life.Application.Services.Exercise;
+using Life.Application.Services.Goals;
 using Life.Application.Services.Interfaces.Exercise;
+using Life.Application.Services.Interfaces.Goals;
+using Life.Application.Services.Interfaces.Util;
 using Life.Data;
 using Life.Theme;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +34,7 @@ namespace Life
         {
             services.AddScoped<IExerciseInfoService, ExerciseInfoService>();
             services.AddScoped<IExerciseService, ExerciseService>();
+            services.AddScoped<IGoalService, GoalService>();
 
             // Use SQL Database if in Azure, otherwise, use local SQl server running with Docker
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
@@ -56,6 +60,8 @@ namespace Life
 
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
+
+            services.AddSingleton<IUserFriendlyExceptionMapper, UserFriendlyExceptionMapper>();
 
             services.Configure<IConfiguration>(Configuration);
 

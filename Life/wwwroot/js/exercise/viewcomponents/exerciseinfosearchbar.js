@@ -20,6 +20,7 @@
                         //set values
                         $('#exercise-type').val(ui.item.type);
                         $('#description').val(ui.item.description);
+                        $('#info-id').val(ui.item.id);
 
                         $(this).parent()
                             .next()

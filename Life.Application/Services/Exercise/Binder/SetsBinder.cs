@@ -53,7 +53,7 @@ namespace Life.Application.Services.Exercise.Binder
                 int result;
                 var set = new SetDTO
                 {
-                    Duration = int.TryParse(durationValuesArray[i], out result) ? result : 0, // should trow invalid model error...
+                    Duration = int.TryParse(durationValuesArray[i], out result) ? result : 0,
                     SetDescription = setDescriptionValuesArray[i]
                 };
                 _sets.Add(set);

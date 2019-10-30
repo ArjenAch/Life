@@ -21,7 +21,7 @@
 
         $.post({
             url: "/Exercises/Create",
-            data: input      
+            data: input
         });
 
      });
