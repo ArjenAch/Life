@@ -77,10 +77,11 @@ namespace Life.Application.Services.Exercises
         {
             var entity = await _context.Exercises
                 .Include(ent => ent.ExerciseInfo)
+                .Include(ent => ent.Sets)
                 .FirstOrDefaultAsync(ent => ent.Id == id);
 
             var exerciseDTO = _mapper.Map<Exercise, ExerciseDTO>(entity);
-            //TODO: custom mapper
+
             return exerciseDTO;
         }
 

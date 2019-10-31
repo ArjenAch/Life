@@ -7,7 +7,6 @@ namespace Life.Application.Services.Exercises.DTO
 {
     public class SetDTO
     {
-        public string Index { get; set; }
         public string SetDescription { get; set; }
         public int Duration { get; set; }
         public int Weight { get; set; }
