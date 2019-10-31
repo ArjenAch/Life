@@ -56,9 +56,8 @@ namespace Life.Application.Services.Exercise
                     exercise.Sets.Add(item);
                 }
             }
+
             await _context.AddAsync(exercise);
-
-
         }
 
         public Task<bool> Exists(int id)

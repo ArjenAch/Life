@@ -14,15 +14,4 @@
         $(this).parent().remove();
     });
 
-    $('#create-exercise').submit(function (e) {
-       e.preventDefault();
-       console.log("trying to submit form");
-        var input = $(this).serializeArray();
-
-        $.post({
-            url: "/Exercises/Create",
-            data: input
-        });
-
-     });
 }

@@ -117,7 +117,6 @@ namespace Life.Tests.Controllers
         public async Task CreatePost_ReturnAViewResult_WhenModelStateIsInvalid()
         {
             // Arrange
-            var exerciseService = new ExerciseInfoServiceMocks();
             var mockService = new Mock<IExerciseInfoService>();
 
             var controller = new ExercisesInfoController(mockService.Object);

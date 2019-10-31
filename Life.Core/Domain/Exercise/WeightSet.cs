@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Life.Core.Domain.Exercise
@@ -9,7 +10,11 @@ namespace Life.Core.Domain.Exercise
         /// <summary>
         /// In kg
         /// </summary>
+        
+        [Required]
         public int Weight { get; set; }
+
+        [Required]
         public int Reps { get; set; }
     }
 }
