@@ -7,11 +7,11 @@ using System.Text;
 
 namespace Life.Tests.ServiceMocks
 {
-    public class ExercisesServiceMock
+    public class ExercisesServiceMocks
     {
         private List<ExerciseDTO> _exercises;
         private List<ExerciseInfoDTO> _exercisesInfo;
-        public ExercisesServiceMock()
+        public ExercisesServiceMocks()
         {
             _exercises = new List<ExerciseDTO>()
             {
@@ -97,7 +97,7 @@ namespace Life.Tests.ServiceMocks
         }
 
 
-        public List<ExerciseDTO> GetExerciseInfoList()
+        public List<ExerciseDTO> GetExerciseList()
         {
             return _exercises;
 

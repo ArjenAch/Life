@@ -67,7 +67,7 @@ namespace Life.Application.Services.Exercises
 
         public async Task<IEnumerable<ExerciseDTO>> GetAllAsync()
         {
-            var entities = await _context.Exercises.ToListAsync(); //.Include<ExerciseInfo>().
+            var entities = await _context.Exercises.Include(entity => entity.ExerciseInfo).ToListAsync(); 
             var exercises = _mapper.Map<IEnumerable<ExerciseDTO>>(entities);
 
             return exercises;
@@ -75,9 +75,12 @@ namespace Life.Application.Services.Exercises
 
         public async Task<ExerciseDTO> GetByIdAsync(int id)
         {
-            var entity = await _context.Exercises.FindAsync(id);
-            var exerciseDTO = _mapper.Map<Exercise, ExerciseDTO>(entity);
+            var entity = await _context.Exercises
+                .Include(ent => ent.ExerciseInfo)
+                .FirstOrDefaultAsync(ent => ent.Id == id);
 
+            var exerciseDTO = _mapper.Map<Exercise, ExerciseDTO>(entity);
+            //TODO: custom mapper
             return exerciseDTO;
         }
 
@@ -87,6 +90,7 @@ namespace Life.Application.Services.Exercises
 
             if (entity != null)
             {
+                //TODO remove sets
                 _context.Exercises.Remove(entity);
             }
         }

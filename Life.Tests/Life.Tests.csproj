@@ -24,8 +24,4 @@
     <ProjectReference Include="..\Life\Life.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

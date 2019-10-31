@@ -19,6 +19,7 @@ namespace Life.Tests.Controllers
 {
     public class ExerciseInfoControllerTests
     {
+
         #region Index
 
         [Fact]

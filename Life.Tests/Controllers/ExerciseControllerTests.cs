@@ -2,10 +2,12 @@
 using Life.Application.Services.Interfaces.Exercises;
 using Life.Controllers;
 using Life.Core.Domain.Exercises;
+using Life.Tests.ServiceMocks;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -14,6 +16,29 @@ namespace Life.Tests.Controllers
 {
     public class ExerciseControllerTests
     {
+        #region Index
+        [Fact]
+        public async Task Index_ReturnAViewResult_WithAListOfExerciceDTOobjects()
+        {
+            // Arrange
+            var exerciseService = new ExercisesServiceMocks();
+            var mockService = new Mock<IExerciseService>();
+            mockService.Setup(service => service.GetAllAsync())
+                .ReturnsAsync(exerciseService.GetExerciseList());
+            var controller = new ExercisesController(mockService.Object);
+
+            // Act
+            var result = await controller.Index();
+
+            //Arange
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var model = Assert.IsAssignableFrom<IEnumerable<ExerciseDTO>>(
+                viewResult.ViewData.Model);
+            Assert.Equal(2, model.Count());
+        }
+
+        #endregion
+
         #region create
         [Fact]
         public void Create_ReturnAViewResult()
@@ -80,9 +105,6 @@ namespace Life.Tests.Controllers
 
         #endregion
 
-        //To check -list,setdto same type test + implementation
-        // komt die in de model binder?
-        //modelbinder test?
-        // toevoegen van een exercise met een bestaande exercise info en zonder bestaand (wordt die dan aangemaakt?)
+        
     }
 }

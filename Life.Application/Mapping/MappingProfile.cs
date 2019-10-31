@@ -12,7 +12,13 @@ namespace Life.Application.Mapping
         public MappingProfile()
         {
             CreateMap<ExerciseInfo, ExerciseInfoDTO>().ReverseMap();
-            CreateMap<Exercise, ExerciseDTO>().ReverseMap();
+            CreateMap<Exercise, ExerciseDTO>()
+                .ForMember(destination => destination.InfoId, opt => opt.MapFrom(src => src.ExerciseInfo.Id))
+                .ForMember(destination => destination.Title, opt => opt.MapFrom(src => src.ExerciseInfo.Title))
+                .ForMember(destination => destination.Description, opt => opt.MapFrom(src => src.ExerciseInfo.Description))
+                .ForMember(destination => destination.ExerciseType, opt => opt.MapFrom(src => src.ExerciseInfo.ExerciseType))
+                .ReverseMap();
+
             CreateMap<Exercise, ExerciseInfo>().ReverseMap();
             CreateMap<ExerciseDTO, ExerciseInfoDTO>().ReverseMap();
             CreateMap<SetDTO, WeightSet>().ReverseMap();
