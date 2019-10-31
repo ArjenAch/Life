@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Life.Core.Domain.Exercise;
+using Life.Core.Domain.Exercises;
 using Life.Data;
-using Life.Application.Services.Interfaces.Exercise;
-using Life.Application.Services.Exercise;
-using Life.Application.Services.Exercise.DTO;
+using Life.Application.Services.Interfaces.Exercises;
+using Life.Application.Services.Exercises;
+using Life.Application.Services.Exercises.DTO;
 
 namespace Life.Controllers
 {
@@ -61,8 +61,12 @@ namespace Life.Controllers
             if (ModelState.IsValid)
             {
                 await _exerciseService.AddAsync(exerciseDTO);
-                await _exerciseService.SaveAsync();
-                return RedirectToAction(nameof(Index));
+                var response = await _exerciseService.SaveAsync();
+                if (response.Succes)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                ViewData["ErrorMessage"] = response.Message;
             }
             return View(exerciseDTO); 
         }

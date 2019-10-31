@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Life.Core.Domain.Exercise
+namespace Life.Core.Domain.Exercises
 {
     public enum ExerciseType
     {

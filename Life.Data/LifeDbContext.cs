@@ -1,4 +1,4 @@
-﻿using Life.Core.Domain.Exercise;
+﻿using Life.Core.Domain.Exercises;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Life.Application.Mapping;
-using Life.Application.Services.Exercise;
+using Life.Application.Services.Exercises;
 using Life.Application.Services.Goals;
-using Life.Application.Services.Interfaces.Exercise;
+using Life.Application.Services.Interfaces.Exercises;
 using Life.Application.Services.Interfaces.Goals;
 using Life.Application.Services.Interfaces.Util;
 using Life.Data;

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Life.Application.Services.Exercise.DTO;
-using Life.Application.Services.Interfaces.Exercise;
+using Life.Application.Services.Exercises.DTO;
+using Life.Application.Services.Interfaces.Exercises;
 using Life.Application.Services.Interfaces.Util;
-using Life.Core.Domain.Exercise;
+using Life.Core.Domain.Exercises;
 using Life.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Life.Application.Services.Exercise
+namespace Life.Application.Services.Exercises
 {
     public class ExerciseInfoService : BaseService, IExerciseInfoService
     {
@@ -18,7 +18,7 @@ namespace Life.Application.Services.Exercise
 
         public ExerciseInfoService(LifeDbContext context, IMapper mapper, IUserFriendlyExceptionMapper exceptionMapper) : base(context, exceptionMapper)
         {
-            this._mapper = mapper;
+            _mapper = mapper;
         }
         public async Task AddAsync(ExerciseInfoDTO exerciseInfo)
         {

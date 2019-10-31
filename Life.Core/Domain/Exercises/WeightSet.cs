@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Life.Application.Services.Exercise.DTO
+namespace Life.Core.Domain.Exercises
 {
-    public class SetDTO
+    public class WeightSet : Set
     {
-        public string Index { get; set; }
-        public string SetDescription { get; set; }
-        [Range(1, int.MaxValue)]
-        public int Duration { get; set; }
+        /// <summary>
+        /// In kg
+        /// </summary>
+        
+        [Required]
         [Range(0, 200000)]
         public int Weight { get; set; }
+
+        [Required]
         [Range(1, 100)]
         public int Reps { get; set; }
     }

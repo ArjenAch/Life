@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Life.Core.Domain.Exercise
+namespace Life.Application.Services.Exercises.DTO
 {
-    public class WeightSet : Set
+    public class SetDTO
     {
-        /// <summary>
-        /// In kg
-        /// </summary>
-        
-        [Required]
+        public string Index { get; set; }
+        public string SetDescription { get; set; }
+        public int Duration { get; set; }
         public int Weight { get; set; }
-
-        [Required]
         public int Reps { get; set; }
     }
 }

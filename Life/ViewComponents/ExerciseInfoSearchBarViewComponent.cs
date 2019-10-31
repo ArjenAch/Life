@@ -1,5 +1,5 @@
-﻿using Life.Application.Services.Exercise.DTO;
-using Life.Application.Services.Interfaces.Exercise;
+﻿using Life.Application.Services.Exercises.DTO;
+using Life.Application.Services.Interfaces.Exercises;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

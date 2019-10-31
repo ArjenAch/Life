@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Life.Application.Services.Interfaces.Exercise;
-using Life.Application.Services.Exercise.DTO;
+using Life.Application.Services.Interfaces.Exercises;
+using Life.Application.Services.Exercises.DTO;
 
 namespace Life.Controllers
 {

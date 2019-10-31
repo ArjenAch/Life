@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Life.Core.Domain.Exercise
+namespace Life.Core.Domain.Exercises
 {
     public class ExerciseInfo : BaseEntity
     {

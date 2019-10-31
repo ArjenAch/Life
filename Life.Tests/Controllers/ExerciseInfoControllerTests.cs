@@ -1,8 +1,8 @@
 ﻿using Life.Application.Mapping.DTO;
-using Life.Application.Services.Exercise.DTO;
-using Life.Application.Services.Interfaces.Exercise;
+using Life.Application.Services.Exercises.DTO;
+using Life.Application.Services.Interfaces.Exercises;
 using Life.Controllers;
-using Life.Core.Domain.Exercise;
+using Life.Core.Domain.Exercises;
 using Life.Tests.ServiceMocks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

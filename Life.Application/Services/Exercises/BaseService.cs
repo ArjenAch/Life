@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Life.Application.Services.Exercise
+namespace Life.Application.Services.Exercises
 {
     public abstract class BaseService
     {
@@ -16,8 +16,8 @@ namespace Life.Application.Services.Exercise
 
         public BaseService(LifeDbContext context, IUserFriendlyExceptionMapper exceptionMapper)
         {
-            this._context = context;
-            this._exceptionMapper = exceptionMapper;
+            _context = context;
+            _exceptionMapper = exceptionMapper;
         }
 
         public async Task<OperationResponse> SaveAsync()

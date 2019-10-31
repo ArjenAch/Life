@@ -1,10 +1,10 @@
-﻿using Life.Core.Domain.Exercise;
+﻿using Life.Core.Domain.Exercises;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Life.Application.Services.Exercise.DTO
+namespace Life.Application.Services.Exercises.DTO
 {
     public class ExerciseInfoDTO
     {

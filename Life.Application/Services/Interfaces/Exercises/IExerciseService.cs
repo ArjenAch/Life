@@ -1,12 +1,12 @@
 ﻿using Life.Application.Mapping.DTO;
-using Life.Application.Services.Exercise.DTO;
-using Life.Core.Domain.Exercise;
+using Life.Application.Services.Exercises.DTO;
+using Life.Core.Domain.Exercises;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Life.Application.Services.Interfaces.Exercise
+namespace Life.Application.Services.Interfaces.Exercises
 {
     public interface IExerciseService
     {

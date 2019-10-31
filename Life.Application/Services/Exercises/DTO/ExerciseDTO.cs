@@ -1,12 +1,12 @@
-﻿using Life.Application.Services.Exercise.Binder;
-using Life.Core.Domain.Exercise;
+﻿using Life.Application.Services.Exercises.Binder;
+using Life.Core.Domain.Exercises;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Life.Application.Services.Exercise.DTO
+namespace Life.Application.Services.Exercises.DTO
 {
     public class ExerciseDTO
     {

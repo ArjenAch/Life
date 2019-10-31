@@ -1,4 +1,4 @@
-﻿namespace Life.Core.Domain.Exercise
+﻿namespace Life.Core.Domain.Exercises
 {
     public abstract class Set
     {

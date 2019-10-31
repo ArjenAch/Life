@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Life.Application.Services.Exercise.DTO;
-using Life.Application.Services.Interfaces.Exercise;
+using Life.Application.Services.Exercises.DTO;
+using Life.Application.Services.Interfaces.Exercises;
 using Life.Application.Services.Interfaces.Util;
-using Life.Core.Domain.Exercise;
+using Life.Core.Domain.Exercises;
 using Life.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,26 +10,26 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Life.Application.Services.Exercise
+namespace Life.Application.Services.Exercises
 {
     public class ExerciseService : BaseService, IExerciseService
     {
         private readonly IMapper _mapper;
         private readonly IExerciseInfoService _exerciseInfoService;
 
-        public ExerciseService(LifeDbContext context, IMapper mapper, 
+        public ExerciseService(LifeDbContext context, IMapper mapper,
             IExerciseInfoService exerciseInfoService, IUserFriendlyExceptionMapper exceptionMapper)
             : base(context, exceptionMapper)
         {
-            this._mapper = mapper;
-            this._exerciseInfoService = exerciseInfoService;
+            _mapper = mapper;
+            _exerciseInfoService = exerciseInfoService;
         }
-        
+
         //TODO : somewhere add a check if at least one set is added & sets within a exercise are of the same type implementation
         public async Task AddAsync(ExerciseDTO exerciseDTO)
         {
             ExerciseInfoDTO exerciseInfo;
-            var exercise = new Core.Domain.Exercise.Exercise() { Sets = new List<Set>()};
+            var exercise = new Exercise() { Sets = new List<Set>() };
 
             exerciseInfo = _mapper.Map<ExerciseDTO, ExerciseInfoDTO>(exerciseDTO);
             exerciseInfo.Id = exerciseDTO.InfoId;
@@ -38,9 +38,9 @@ namespace Life.Application.Services.Exercise
             if (!await _exerciseInfoService.Exists(exerciseDTO.InfoId))
             {
                 await _exerciseInfoService.AddAsync(exerciseInfo);
-            }           
+            }
 
-            if( exerciseDTO.ExerciseType == ExerciseType.Strength)
+            if (exerciseDTO.ExerciseType == ExerciseType.Strength)
             {
                 var list = _mapper.Map<List<SetDTO>, List<WeightSet>>(exerciseDTO.Sets);
                 foreach (var item in list) //check
@@ -73,14 +73,22 @@ namespace Life.Application.Services.Exercise
             return exercises;
         }
 
-        public Task<ExerciseDTO> GetByIdAsync(int id)
+        public async Task<ExerciseDTO> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = await _context.Exercises.FindAsync(id);
+            var exerciseDTO = _mapper.Map<Exercise, ExerciseDTO>(entity);
+
+            return exerciseDTO;
         }
 
-        public Task RemoveAsync(int id)
+        public async Task RemoveAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = await _context.Exercises.FindAsync(id);
+
+            if (entity != null)
+            {
+                _context.Exercises.Remove(entity);
+            }
         }
 
 

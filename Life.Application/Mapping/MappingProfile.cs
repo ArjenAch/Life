@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Life.Application.Services.Exercise.DTO;
-using Life.Core.Domain.Exercise;
+using Life.Application.Services.Exercises.DTO;
+using Life.Core.Domain.Exercises;
 using System;
 using System.Collections.Generic;
 using System.Text;

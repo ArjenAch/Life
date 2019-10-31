@@ -19,7 +19,7 @@ namespace Life.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Life.Core.Domain.Exercise.Exercise", b =>
+            modelBuilder.Entity("Life.Core.Domain.Exercises.Exercise", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -38,7 +38,7 @@ namespace Life.Data.Migrations
                     b.ToTable("Exercises");
                 });
 
-            modelBuilder.Entity("Life.Core.Domain.Exercise.ExerciseInfo", b =>
+            modelBuilder.Entity("Life.Core.Domain.Exercises.ExerciseInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -60,7 +60,7 @@ namespace Life.Data.Migrations
                     b.ToTable("ExercisesInfo");
                 });
 
-            modelBuilder.Entity("Life.Core.Domain.Exercise.Set", b =>
+            modelBuilder.Entity("Life.Core.Domain.Exercises.Set", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -80,7 +80,7 @@ namespace Life.Data.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Set");
                 });
 
-            modelBuilder.Entity("Life.Core.Domain.Exercise.Workout", b =>
+            modelBuilder.Entity("Life.Core.Domain.Exercises.Workout", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -95,16 +95,20 @@ namespace Life.Data.Migrations
                     b.ToTable("Workouts");
                 });
 
-            modelBuilder.Entity("Life.Core.Domain.Exercise.DurationSet", b =>
+            modelBuilder.Entity("Life.Core.Domain.Exercises.DurationSet", b =>
                 {
-                    b.HasBaseType("Life.Core.Domain.Exercise.Set");
+                    b.HasBaseType("Life.Core.Domain.Exercises.Set");
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("Duration");
 
                     b.HasDiscriminator().HasValue("DurationSet");
                 });
 
-            modelBuilder.Entity("Life.Core.Domain.Exercise.WeightSet", b =>
+            modelBuilder.Entity("Life.Core.Domain.Exercises.WeightSet", b =>
                 {
-                    b.HasBaseType("Life.Core.Domain.Exercise.Set");
+                    b.HasBaseType("Life.Core.Domain.Exercises.Set");
 
                     b.Property<int>("Reps");
 
@@ -113,20 +117,20 @@ namespace Life.Data.Migrations
                     b.HasDiscriminator().HasValue("WeightSet");
                 });
 
-            modelBuilder.Entity("Life.Core.Domain.Exercise.Exercise", b =>
+            modelBuilder.Entity("Life.Core.Domain.Exercises.Exercise", b =>
                 {
-                    b.HasOne("Life.Core.Domain.Exercise.ExerciseInfo", "ExerciseInfo")
+                    b.HasOne("Life.Core.Domain.Exercises.ExerciseInfo", "ExerciseInfo")
                         .WithMany()
                         .HasForeignKey("ExerciseInfoId");
 
-                    b.HasOne("Life.Core.Domain.Exercise.Workout")
+                    b.HasOne("Life.Core.Domain.Exercises.Workout")
                         .WithMany("Exercises")
                         .HasForeignKey("WorkoutId");
                 });
 
-            modelBuilder.Entity("Life.Core.Domain.Exercise.Set", b =>
+            modelBuilder.Entity("Life.Core.Domain.Exercises.Set", b =>
                 {
-                    b.HasOne("Life.Core.Domain.Exercise.Exercise")
+                    b.HasOne("Life.Core.Domain.Exercises.Exercise")
                         .WithMany("Sets")
                         .HasForeignKey("ExerciseId");
                 });

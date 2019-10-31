@@ -1,4 +1,4 @@
-﻿using Life.Application.Services.Exercise.DTO;
+﻿using Life.Application.Services.Exercises.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Primitives;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Life.Application.Services.Exercise.Binder
+namespace Life.Application.Services.Exercises.Binder
 {
     public class SetsBinder : IModelBinder
     {
@@ -32,6 +32,7 @@ namespace Life.Application.Services.Exercise.Binder
                     CreateWeightSets(bindingContext.HttpContext.Request);
                 }
             ((List<SetDTO>)bindingContext.Model).AddRange(_sets);
+
             }
 
             return Task.CompletedTask;
