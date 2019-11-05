@@ -35,11 +35,6 @@ namespace Life.Application.Services.Exercises
             exerciseInfo.Id = exerciseDTO.InfoId;
             exercise.ExerciseInfo = _mapper.Map<ExerciseInfoDTO, ExerciseInfo>(exerciseInfo);
 
-            if (!await _exerciseInfoService.Exists(exerciseDTO.InfoId))
-            {
-                await _exerciseInfoService.AddAsync(exerciseInfo);
-            }
-
             if (exerciseDTO.ExerciseType == ExerciseType.Strength)
             {
                 var list = _mapper.Map<List<SetDTO>, List<WeightSet>>(exerciseDTO.Sets);
@@ -87,11 +82,13 @@ namespace Life.Application.Services.Exercises
 
         public async Task RemoveAsync(int id)
         {
-            var entity = await _context.Exercises.FindAsync(id);
+            var entity = await _context.Exercises
+                .Include(ent => ent.Sets)
+                .FirstOrDefaultAsync(ent => ent.Id == id);
 
             if (entity != null)
             {
-                //TODO remove sets
+                _context.RemoveRange(entity.Sets);
                 _context.Exercises.Remove(entity);
             }
         }
