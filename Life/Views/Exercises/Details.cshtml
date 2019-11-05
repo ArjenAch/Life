@@ -1,4 +1,4 @@
-﻿@model Life.Core.Domain.Exercises.Exercise
+﻿@model Life.Application.Services.Exercises.DTO.ExerciseDTO
 
 @{
     ViewData["Title"] = "Details";
@@ -10,9 +10,37 @@
     <h4>Exercise</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ExerciseType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ExerciseType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+    <h3>Sets</h3>
+    <div class="row card-grid">
+        @foreach (var item in Model.Sets)
+        {
+            <set-renderer exercise-type="@Model.ExerciseType" Set="@item"></set-renderer>
+        }
+    </div>
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
 </div>

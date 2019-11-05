@@ -22,7 +22,9 @@ namespace Life.Application.Mapping
             CreateMap<Exercise, ExerciseInfo>().ReverseMap();
             CreateMap<ExerciseDTO, ExerciseInfoDTO>().ReverseMap();
             CreateMap<SetDTO, WeightSet>().ReverseMap();
-            CreateMap<SetDTO, DurationSet>().ReverseMap();
+            CreateMap<SetDTO, DurationSet>()
+                .ForMember(destination => destination.Description, opt => opt.MapFrom(src => src.SetDescription))
+                .ReverseMap();
         }
     }
 }
