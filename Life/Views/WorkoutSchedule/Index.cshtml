@@ -6,7 +6,51 @@
 {
     @*//TODO: turn this into a viewcomponent*@
     <div id="overlay">
-
+        <ul class="list-group">
+            <li class="list-group-item">Joe</li>
+            <li>
+                <ul class="list-group">
+                    <li class="list-group-item category">First item</li>
+                    <li class="list-group-item">Sec item</li>
+                    <li class="list-group-item">third item</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="list-group">
+                    <li class="list-group-item category">nda item</li>
+                    <li class="list-group-item">Sevc item</li>
+                    <li class="list-group-item">theaird item</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="list-group">
+                    <li class="list-group-item category">nda item</li>
+                    <li class="list-group-item">Sevc item</li>
+                    <li class="list-group-item">theaird item</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="list-group">
+                    <li class="list-group-item category">nda item</li>
+                    <li class="list-group-item">Sevc item</li>
+                    <li class="list-group-item">theaird item</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="list-group">
+                    <li class="list-group-item category">nda item</li>
+                    <li class="list-group-item">Sevc item</li>
+                    <li class="list-group-item">theaird item</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="list-group">
+                    <li class="list-group-item category">nda item</li>
+                    <li class="list-group-item" id="item1" draggable="true" ondragstart="drag(event)">Sevc item</li>
+                    <li class="list-group-item" id="item2" draggable="true" ondragstart="drag(event)">theaird item</li>
+                </ul>
+            </li>
+        </ul>
     </div>
 }
 
@@ -16,8 +60,8 @@
             <div class="card-header">
                 <h5>Monday</h5>
             </div>
-            <div class="card-body">
-                BOdy
+            <div class="card-body" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <ul class="list-group"> </ul>
             </div>
         </div>
         <div class="card col-lg-2 col-md-6 col-sm-12">
@@ -75,4 +119,5 @@
 @section Style
 {
     <link rel="stylesheet" href="~/css/exercise/workoutschedule.css" />
+    <script src="~/js/exercise/workoutschedule.js"></script>
 }
