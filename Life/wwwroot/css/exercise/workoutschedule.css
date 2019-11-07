@@ -1,0 +1,39 @@
+﻿.card-group {
+    height: 80vh;
+    width: inherit;
+}
+
+.planning{
+    justify-content:center;
+    display: block;
+}
+
+.card {
+    height: inherit;
+    width:auto;
+    padding:unset;
+    min-width: 150px;
+    word-wrap:normal;
+}
+
+.col
+{
+    margin: 0px;
+}
+
+@media(max-width: 576px) {
+    .col-sm-12 {
+        margin: 15px;
+    }
+}
+
+#overlay
+{
+     position: fixed; /* Sit on top of the page content */
+     float: left;
+     width: 15%;
+     border-color: whitesmoke;
+     height: 80%;
+     z-index: 100;
+     word-wrap:break-word;
+}
