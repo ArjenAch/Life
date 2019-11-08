@@ -1,0 +1,31 @@
+﻿@using Life.Application.Services.Exercises.DTO
+@using Life.Core.Domain.Exercises
+
+@model IEnumerable<IGrouping<ExerciseType, ExerciseDTO>>
+@*
+    Layout = null;
+*@
+
+<div id="overlay">
+    <ul class="list-group">
+        @{
+            var count = 0;
+            // Expects a list ordered by exerciseType
+            foreach (var typeList in Model)
+            {
+                <li>
+                    <ul class="list-group">
+                        <li class="list-group-item category">@typeList.Key</li>
+                        @foreach (var item in typeList)
+                        {
+                            <li class="list-group-item" id="item-@count" draggable="true" ondragstart="drag(event)">@item.Title</li>
+                            count++;
+                        }
+                    </ul>
+                </li>
+            }
+        }
+    </ul>
+</div>
+
+
