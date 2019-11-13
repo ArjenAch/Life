@@ -65,12 +65,17 @@
                 <ul class="list-group"> </ul>
             </div>
         </div>
-
     </div>
 </div>
 
 @section Style
 {
-    <link rel="stylesheet" href="~/css/exercise/workoutschedule.css" />
-    <script src="~/js/exercise/workoutschedule.js"></script>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/exercise/workoutschedule.css" />
+        <script src="~/js/exercise/workoutschedule.js"></script>
+    </environment>
+    <environment include="Production">
+        <link rel="stylesheet" href="~/css/exercise/workoutschedule.min.css" />
+        <script src="~/js/exercise/workoutschedule.min.js"></script>
+    </environment>
 }

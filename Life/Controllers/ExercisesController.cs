@@ -92,7 +92,7 @@ namespace Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] ExerciseDTO exercise)
+        public async Task<IActionResult> Edit(int id, List<SetDTO> sets, [Bind("Id, Sets")] ExerciseDTO exercise)
         {
             if (id != exercise.Id)
             {
@@ -150,14 +150,14 @@ namespace Life.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult GetSetPartial(int typeId)
+        public IActionResult GetSetPartial(int typeId, SetDTO set = null)
         {
             if(typeId == (int)ExerciseType.Strength)
             {
-                return PartialView("_WeightSetPartial");
+                return PartialView("_WeightSetPartial", set);
             }
 
-            return PartialView("_DurationSetPartial");
+            return PartialView("_DurationSetPartial", set);
         }
 
     }

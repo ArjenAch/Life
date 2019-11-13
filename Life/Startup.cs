@@ -47,7 +47,7 @@ namespace Life
                 services.AddDbContextPool<LifeDbContext>(options =>
                         options.UseSqlServer(Configuration["ConnectionStrings:LocalSqlServerLifeDb"]));
             }
-
+            
             services.Configure<RazorViewEngineOptions>(
                 options => options.ViewLocationExpanders.Add(new ThemeExpander())
                 );

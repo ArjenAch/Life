@@ -104,7 +104,14 @@ namespace Life.Tests.Controllers
         }
 
         #endregion
+        #region Edit
 
-        
+        #endregion
+
+        #region Delete
+
+        #endregion
+
+
     }
 }

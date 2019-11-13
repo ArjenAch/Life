@@ -1,4 +1,6 @@
-﻿@model Life.Core.Domain.Exercises.Exercise
+﻿@model Life.Application.Services.Exercises.DTO.ExerciseDTO
+
+@using Life.Core.Domain.Exercises
 
 @{
     ViewData["Title"] = "Edit";
@@ -14,9 +16,29 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ExerciseType" class="control-label"></label>
+                <select id="exercise-type" asp-for="@Model.ExerciseType" asp-items="Html.GetEnumSelectList<ExerciseType>()" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+            </div>
+            <div class="set-list">
+                @foreach (var set in Model.Sets)
+                {
+                    <script on-content-loaded="true">addSet({duration:"@set.Duration", setDescription:"@set.SetDescription", weight:"@set.Weight", reps:"@set.Reps"});</script>
+                }
+                <button class="add-set">Add Set</button>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
+
     </div>
 </div>
 
@@ -25,5 +47,15 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <environment include="Development">
+        <link href="~/lib/jqueryui/jquery-ui.css" rel="stylesheet" />
+        <script src="~/lib/jqueryui/jquery-ui.js"></script>
+        <script src="~/js/exercise/setdynamicgenerator.js" on-content-loaded="true"></script>
+    </environment>
+    <environment include="Production">
+        <link href="~/lib/jqueryui/jquery-ui.min.css" rel="stylesheet" />
+        <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+        <script src="~/js/exercise/setdynamicgenerator.min.js" on-content-loaded="true"></script>
+    </environment>
 }
