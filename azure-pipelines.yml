@@ -14,7 +14,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  -group: email-recipients
+  -group: 'email-recipients'
 
 steps:
 - task: NuGetToolInstaller@1
