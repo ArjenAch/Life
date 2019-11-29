@@ -12,40 +12,17 @@ pool:
 
 variables:
   - group: email-recipients
+  - group: repos
   - name: solution
     value: '**/*.sln'
   - name: buildPlatform
     value: 'Any CPU'
   - name: buildConfiguration
     value: 'Release'
-  - name: pipeline-name
-    value: '$(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)'
-  - name: pipeline-namev2
-    value: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
-  - name: pipeline-namev3
-    value: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)\
-  - name: pipeline-namev4
-    value: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)
 
 name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 
 steps:
-
-- task: CmdLine@2
-  inputs:
-    script: |
-      echo Write your commands here
-      
-      echo Hello world
-      
-      echo $(pipeline-name)
-      echo $(pipeline-namev2)
-      echo $(pipeline-namev3)
-      echo $(pipeline-namev4)
-
-      echo Hello world
-
-      echo $(build-id)
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
@@ -75,7 +52,7 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'myWebsiteName'
+    artifactName: $(branch)
 
 - task: SendGridEmail@2
   inputs:
@@ -84,4 +61,4 @@ steps:
     ToAddresses: '$(22-company-team) $(company-developers)'
     Subject: 'Build + Name'
     emailBodyFormat: 'InLine'
-    EmailBody: 'The build succeeded.. Link to build: $(Build.ArtifactStagingDirectory) $(name) $(artifactName) '
+    EmailBody: 'The build succeeded.. Link to build: $(Life)/tree/$(branch)'
