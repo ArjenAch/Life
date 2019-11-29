@@ -26,10 +26,15 @@ steps:
       
       echo $env:EMAIL-FROM
 
-      echo From group...:
+      echo From group..1
 
       echo $%FROM%
-
+      echo From 2
+      echo $(from)
+      echo From 3
+      echo $(email-from)
+      echo From 4
+      echo '$(email-from)'
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
