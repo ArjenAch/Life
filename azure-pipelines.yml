@@ -11,10 +11,14 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-  -group: email-recipients
+  - group: email-recipients
+  - name: solution
+    value: '**/*.sln'
+  - name: buildPlatform
+    value: 'Any CPU'
+  - name: buildConfiguration
+    value: 'Release'
+
 
 steps:
 - task: CmdLine@2
@@ -33,7 +37,7 @@ steps:
       echo From 5
       echo '$(22-company-team)'
       echo From 6
-      echo '$(company-developers)'
+      echo $(company-developers)
       echo From 7
       echo '$(email-recipients company-developers)'
       echo From 8
