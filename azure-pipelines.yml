@@ -30,7 +30,7 @@ steps:
       
       echo Hello world
       
-      echo $(Build.name)
+      echo $(BuildID)
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
