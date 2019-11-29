@@ -31,12 +31,8 @@ steps:
       echo Write your commands here
       
       echo Hello world
-
-      echo $(name)
-
-      echo $(artifactName)
       
-      echo $(name)
+      echo $(buildName)
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
