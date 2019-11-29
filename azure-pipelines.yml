@@ -27,12 +27,11 @@ steps:
       
       echo Hello world
 
-      echo $(Build)
+      echo $(name)
 
-      echo $(solution)
+      echo $(artifactName)
       
-      echo $(buildConfiguration)
-
+      echo $(name)
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
@@ -71,4 +70,4 @@ steps:
     ToAddresses: '$(22-company-team) $(company-developers)'
     Subject: 'Build + Name'
     emailBodyFormat: 'InLine'
-    EmailBody: 'The build succeeded.. Link to build: $(Build.ArtifactStagingDirectory) $(company-developers)'
+    EmailBody: 'The build succeeded.. Link to build: $(Build.ArtifactStagingDirectory) $(name) $(artifactName) '
