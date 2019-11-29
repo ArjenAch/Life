@@ -24,11 +24,11 @@ steps:
       
       echo Hello world
       
-      echo $EMAIL-FROM
+      echo $env:EMAIL-FROM
 
       echo From group...:
 
-      echo $FROM
+      echo $%FROM%
 
 - task: NuGetToolInstaller@1
 
