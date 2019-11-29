@@ -49,9 +49,9 @@ steps:
 
 - task: SendGridEmail@2
   inputs:
-    SendGridApiKey: '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'
-    FromAddress: 'arjenachterveld@hotmail.com'
-    ToAddresses: 'arjen.achterveld@teamrockstars.nl, arjenachterveld@hotmail.com'
+    SendGridApiKey: '$(sengrid-api-key)'
+    FromAddress: '$(email-from)'
+    ToAddresses: '$(toAddresses)'
     Subject: 'Build'
     emailBodyFormat: 'InLine'
     EmailBody: 'The build succeeded.. Link to build: $(Build.ArtifactStagingDirectory)'
