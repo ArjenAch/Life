@@ -18,8 +18,10 @@ variables:
     value: 'Any CPU'
   - name: buildConfiguration
     value: 'Release'
+  - name: buildName
+    value: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 
-name: $(build-name)
+name: $(buildName)
 
 steps:
 
