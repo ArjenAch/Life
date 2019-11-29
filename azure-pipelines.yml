@@ -14,6 +14,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  -group: email-sender email-recipients
 
 steps:
 - task: NuGetToolInstaller@1
@@ -50,8 +51,8 @@ steps:
 - task: SendGridEmail@2
   inputs:
     SendGridApiKey: '$(sengrid-api-key)'
-    FromAddress: '$(email-from)'
-    ToAddresses: '$(toAddresses)'
-    Subject: 'Build'
+    FromAddress: '$(Sender)'
+    ToAddresses: '$(22-company-team) $(company-developers)'
+    Subject: 'Build + Name'
     emailBodyFormat: 'InLine'
     EmailBody: 'The build succeeded.. Link to build: $(Build.ArtifactStagingDirectory)'
