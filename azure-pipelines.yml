@@ -1,4 +1,5 @@
 # ASP.NET Core (.NET Framework)
+
 # Build and test ASP.NET Core projects targeting the full .NET Framework.
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
@@ -45,3 +46,12 @@ steps:
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'myWebsiteName'
+
+- task: SendGridEmail@2
+  inputs:
+    SendGridApiKey: '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'
+    FromAddress: 'arjenachterveld@hotmail.com'
+    ToAddresses: 'arjen.achterveld@teamrockstars.nl, arjenachterveld@hotmail.com'
+    Subject: 'Build'
+    emailBodyFormat: 'InLine'
+    EmailBody: 'The build succeeded.. Link to build: $(Build.ArtifactStagingDirectory)'
