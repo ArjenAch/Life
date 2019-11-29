@@ -24,17 +24,20 @@ steps:
       
       echo Hello world
       
-      echo $env:EMAIL-FROM
-
-      echo From group..1
-
-      echo $%FROM%
       echo From 2
       echo $(from)
       echo From 3
       echo $(email-from)
       echo From 4
-      echo '$(email-from)'
+      echo '$(from)'
+      echo From 5
+      echo '$(22-company-team)'
+      echo From 6
+      echo '$(company-developers)'
+      echo From 7
+      echo '$(email-recipients company-developers)'
+      echo From 8
+      echo '$(email-recipients-company-developers)'
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
