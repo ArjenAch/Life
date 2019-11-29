@@ -18,10 +18,8 @@ variables:
     value: 'Any CPU'
   - name: buildConfiguration
     value: 'Release'
-  - name: buildName
-    value: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 
-name: $(buildName)
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 
 steps:
 
@@ -32,7 +30,7 @@ steps:
       
       echo Hello world
       
-      echo $(buildName)
+      echo $(Build.name)
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
