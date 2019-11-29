@@ -18,10 +18,14 @@ variables:
     value: 'Any CPU'
   - name: buildConfiguration
     value: 'Release'
-  - name: buildId
-    value: '$(build-id)'
   - name: pipeline-name
     value: '$(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)'
+  - name: pipeline-namev2
+    value: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+  - name: pipeline-namev3
+    value: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)\
+  - name: pipeline-namev4
+    value: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)
 
 name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 
@@ -35,6 +39,9 @@ steps:
       echo Hello world
       
       echo $(pipeline-name)
+      echo $(pipeline-namev2)
+      echo $(pipeline-namev3)
+      echo $(pipeline-namev4)
 
       echo Hello world
 
