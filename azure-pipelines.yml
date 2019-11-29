@@ -19,7 +19,10 @@ variables:
   - name: buildConfiguration
     value: 'Release'
 
+name: $(build-name)
+
 steps:
+
 - task: CmdLine@2
   inputs:
     script: |
