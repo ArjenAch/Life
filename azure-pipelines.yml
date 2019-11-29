@@ -17,13 +17,19 @@ variables:
   -group: email-recipients
 
 steps:
-- task: PowerShell@2
+- task: CmdLine@2
   inputs:
-    targetType: 'inline'
     script: |
-      # Write your PowerShell commands here.
+      echo Write your commands here
       
-      Write-Host $env:EMAIL-FROM
+      echo Hello world
+      
+      echo $EMAIL-FROM
+
+      echo From group...:
+
+      echo $FROM
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
