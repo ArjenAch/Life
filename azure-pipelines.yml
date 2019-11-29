@@ -14,7 +14,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  -group: email-sender email-recipients
+  -group: email-recipients
 
 steps:
 - task: NuGetToolInstaller@1
@@ -51,7 +51,7 @@ steps:
 - task: SendGridEmail@2
   inputs:
     SendGridApiKey: '$(sengrid-api-key)'
-    FromAddress: '$(Sender)'
+    FromAddress: '$(from)'
     ToAddresses: '$(22-company-team) $(company-developers)'
     Subject: 'Build + Name'
     emailBodyFormat: 'InLine'
