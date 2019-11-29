@@ -24,17 +24,17 @@ variables:
   - name: buildname
     value: ${TeamProject}
 
-
-
 steps:
 
 - task: CmdLine@2
+variables: 
+  job_variable2: value2
   inputs:
     script: |
       echo Write your commands here
       
       echo $(buildname)
-      echo ${TeamProject}
+      echo $(job_variable2)
 
 - task: NuGetToolInstaller@1
 
